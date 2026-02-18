@@ -4,14 +4,16 @@ import { NextResponse, NextRequest } from "next/server";
 import bcryptjs from 'bcryptjs';
 import { sendEmail } from "@/src/helpers/mailer";
 
-connectToDatabase();
+
 
 async function POST(request: NextRequest) {
     try {
+
+        await connectToDatabase();
         const reqBody = await request.json();
         const {username, email, password} = reqBody;
 
-        const existingUser = await User.findOne(email)
+        const existingUser = await User.findOne({email})
 
         if(existingUser){
             return NextResponse.json({ message: 'User already exists' }, { status: 400 });
@@ -31,10 +33,12 @@ async function POST(request: NextRequest) {
 
         await sendEmail(email, "Verification Email", savedUser._id);
 
-        return NextResponse.json({ message: 'User registered successfully' }, { status: 201 });
+        return NextResponse.json({ message: 'User registered successfully', savedUser }, { status: 201 });
         
     } catch (error) {
         console.log('error to register the user ', error);
         return NextResponse.json({ message: 'Error registering user' }, { status: 500 });
     }
 };
+
+export { POST };
