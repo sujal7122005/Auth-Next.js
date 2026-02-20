@@ -11,7 +11,7 @@ export async function getDataFromToken(request: NextRequest) {
             throw new Error("No token provided");
         }
 
-        const decodedToken: any = jwt.verify(token, process.env.TOKEN_SECRET!);
+        const decodedToken: any = jwt.verify(token, process.env.JWT_SECRET!);
 
         console.log("Decoded Token in helper:", decodedToken);
         return decodedToken.userId;
