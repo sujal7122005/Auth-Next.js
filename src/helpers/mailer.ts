@@ -9,17 +9,17 @@ export const sendEmail = async (email: string, subject: string, userId:any) => {
         if (subject === "Verification Email") {
             
             await User.findByIdAndUpdate(userId, 
-                { 
+                { $set: { 
                     verificationToken: hashedUserId,
                     verificationTokenExpiry: Date.now() + 3600000 // Token expires in 1 hour 
-                });
+                }});
         }else if (subject === "Reset Password") {
             
             await User.findByIdAndUpdate(userId, 
-                { 
+                { $set: { 
                     forgotPasswordToken: hashedUserId,
                     forgotPasswordTokenExpiry: Date.now() + 3600000 // Token expires in 1 hour 
-                });
+                }});
         }
 
         // Looking to send emails in production? Check out our Email API/SMTP product!

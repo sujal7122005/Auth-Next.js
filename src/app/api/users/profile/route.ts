@@ -7,13 +7,17 @@ export async function POST(request: NextRequest) {
     try {
         const decodedToken = await getDataFromToken(request);
         
-        if (!decodedToken || !decodedToken.userId) {
+        if (!decodedToken) {
             return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
         }
 
         await connectToDatabase();
 
-        const user = await User.findById(decodedToken.userId).select('-password');
+        console.log("Decoded Token:", decodedToken);
+        
+        console.log("decodedToken.userId", decodedToken.userId);
+        
+        const user = await User.findById({_id: decodedToken}).select('-password');
 
         if (!user) {
             return NextResponse.json({ message: 'User not found' }, { status: 404 });
