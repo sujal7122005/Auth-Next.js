@@ -24,11 +24,11 @@ function SignUpPage() {
     setLoading(true)
     try {
       const response = await axios.post('/api/users/signup', user)
-      toast.success("User created successfully")
+      toast.success("User created successfully", {duration: 3000})
       console.log(response.data)
       router.push('/login')
     } catch (error) {
-      toast.error("Error creating user")
+      toast.error("Error creating user", {duration: 3000})
     } finally {
       setLoading(false)
     }
@@ -44,7 +44,7 @@ function SignUpPage() {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 to-blue-500">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-purple-600 to-blue-500">
       <div className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
           {loading ? "Loading..." : "Sign Up"}
