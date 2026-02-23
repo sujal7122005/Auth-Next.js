@@ -124,72 +124,7 @@ export default function Home() {
         </p>
       </main>
 
-      {/* Keyframe animations */}
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(24px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.5) rotate(-10deg);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
-          }
-        }
-        @keyframes lineExpand {
-          from {
-            width: 0;
-          }
-          to {
-            width: 120px;
-          }
-        }
-        @keyframes gridReveal {
-          to {
-            opacity: 1;
-          }
-        }
-        @keyframes float {
-          0%, 100% {
-            opacity: 0.3;
-            transform: scale(1) translateY(0);
-          }
-          50% {
-            opacity: 0.6;
-            transform: scale(1.08) translateY(-20px);
-          }
-        }
-        @keyframes bgShift {
-          from {
-            background: radial-gradient(ellipse at 30% 50%, rgba(59,130,246,0.04) 0%, transparent 60%),
-                         radial-gradient(ellipse at 70% 50%, rgba(139,92,246,0.04) 0%, transparent 60%),
-                         #030712;
-          }
-          to {
-            background: radial-gradient(ellipse at 60% 40%, rgba(59,130,246,0.06) 0%, transparent 60%),
-                         radial-gradient(ellipse at 40% 60%, rgba(139,92,246,0.06) 0%, transparent 60%),
-                         #030712;
-          }
-        }
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
-        }
-      `}</style>
+      {/* Keyframes are defined in globals.css */}
     </div>
   );
 }

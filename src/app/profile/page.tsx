@@ -42,30 +42,43 @@ function ProfilePage() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-      <h1 className="text-2xl font-bold mb-4">Profile Page</h1>
-      <button 
-        onClick={userProfile}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
-      >
-        Get User Profile
-      </button>
-      <div>
-        {profileData 
-          ? 
-          <pre className="bg-gray-800 p-4 rounded text-sm overflow-auto max-w-lg">
-            {JSON.stringify(profileData, null, 2)}
-          </pre>
-          : 
-          <p className="text-gray-400">No profile data available</p>}
-      </div>
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gray-950">
+      {/* Ambient background blobs */}
+      <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" style={{ animation: 'float 8s ease-in-out infinite' }} />
+      <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-purple-500/10 blur-3xl" style={{ animation: 'float 8s ease-in-out infinite 4s' }} />
 
-      <button 
-        onClick={logoutUser}
-        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Logout
-      </button>
+      <div className="relative z-10 flex w-full max-w-md flex-col items-center rounded-2xl border border-gray-800 bg-gray-900/60 p-8 shadow-2xl backdrop-blur-sm" style={{ animation: 'fadeInUp 0.8s cubic-bezier(0.16,1,0.3,1) both' }}>
+        {/* Icon */}
+        <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-500/20 bg-blue-500/10 text-2xl backdrop-blur-sm" style={{ animation: 'scaleIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s both' }}>
+          👤
+        </div>
+
+        <h1 className="mb-6 text-3xl font-bold tracking-tight text-white">Profile</h1>
+
+        <button 
+          onClick={userProfile}
+          className="mb-6 w-full rounded-lg bg-blue-600 py-3 font-semibold text-white shadow-lg shadow-blue-500/25 transition duration-200 hover:bg-blue-500 hover:shadow-blue-500/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+        >
+          Get User Profile
+        </button>
+
+        <div className="mb-6 w-full">
+          {profileData 
+            ? 
+            <pre className="w-full overflow-auto rounded-lg border border-gray-700 bg-gray-800/50 p-4 text-sm text-gray-300">
+              {JSON.stringify(profileData, null, 2)}
+            </pre>
+            : 
+            <p className="text-center text-sm text-gray-500">No profile data available</p>}
+        </div>
+
+        <button 
+          onClick={logoutUser}
+          className="w-full rounded-lg bg-red-600 py-3 font-semibold text-white shadow-lg shadow-red-500/25 transition duration-200 hover:bg-red-500 hover:shadow-red-500/40 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+        >
+          Logout
+        </button>
+      </div>
     </div>
   )
 }
