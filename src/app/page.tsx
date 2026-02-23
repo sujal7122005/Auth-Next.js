@@ -1,65 +1,195 @@
-import Image from "next/image";
+'use client'
+
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gray-950">
+      {/* Animated gradient background */}
+      <div
+        className="absolute inset-0"
+        style={{ animation: "bgShift 10s ease-in-out infinite alternate" }}
+      />
+      <div
+        className="absolute -top-40 -left-40 h-125 w-125 rounded-full bg-blue-500/10 blur-3xl"
+        style={{ animation: "float 8s ease-in-out infinite" }}
+      />
+      <div
+        className="absolute -bottom-40 -right-40 h-125 w-125 rounded-full bg-purple-500/10 blur-3xl"
+        style={{ animation: "float 8s ease-in-out infinite 4s" }}
+      />
+      <div
+        className="absolute top-1/3 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-indigo-500/5 blur-3xl"
+        style={{ animation: "float 10s ease-in-out infinite 2s" }}
+      />
+
+      {/* Subtle grid overlay */}
+      <div
+        className="absolute inset-0 opacity-0"
+        style={{
+          backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0)",
+          backgroundSize: "40px 40px",
+          animation: "gridReveal 3s ease-out 0.5s forwards",
+        }}
+      />
+
+      <main className="relative z-10 flex flex-col items-center gap-8 px-6 text-center">
+        {/* Icon */}
+        <div
+          className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-500/10 text-3xl backdrop-blur-sm border border-blue-500/20"
+          style={{ animation: "scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both" }}
+        >
+          🔐
+        </div>
+
+        {/* Divider line */}
+        <div
+          className="h-px w-0 bg-linear-to-r from-transparent via-blue-500/50 to-transparent"
+          style={{ animation: "lineExpand 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards" }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+
+        {/* Heading */}
+        <h1
+          className="text-5xl font-bold tracking-tight text-white sm:text-6xl opacity-0"
+          style={{ animation: "fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards" }}
+        >
+          Hello, Welcome!
+        </h1>
+
+        {/* Brief */}
+        <p
+          className="max-w-md text-lg leading-relaxed text-gray-400 opacity-0"
+          style={{ animation: "fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards" }}
+        >
+          A secure authentication system built with Next.js. Sign up to create
+          your account, verify your email, and manage your profile — all in one
+          place.
+        </p>
+
+        {/* Feature pills */}
+        <div
+          className="flex flex-wrap items-center justify-center gap-3 opacity-0"
+          style={{ animation: "fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards" }}
+        >
+          {["Secure Auth", "Email Verification", "Profile Management"].map((feature, i) => (
+            <span
+              key={feature}
+              className="rounded-full border border-gray-700/50 bg-gray-800/50 px-4 py-1.5 text-xs font-medium text-gray-300 backdrop-blur-sm"
+              style={{ animation: `fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${1.8 + i * 0.15}s both` }}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              {feature}
+            </span>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        {/* Signup Button */}
+        <Link
+          href="/signup"
+          className="group relative mt-2 inline-flex items-center gap-2 overflow-hidden rounded-full bg-blue-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:bg-blue-500 hover:shadow-blue-500/40 hover:scale-105 active:scale-95 opacity-0"
+          style={{ animation: "fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 2.2s forwards" }}
+        >
+          <span
+            className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full"
+            style={{ animation: "shimmer 3s ease-in-out 3s infinite" }}
+          />
+          Get Started
+          <svg
+            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </Link>
+
+        <p
+          className="text-sm text-gray-500 opacity-0"
+          style={{ animation: "fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 2.5s forwards" }}
+        >
+          Already have an account?{" "}
+          <Link href="/login" className="text-blue-400 hover:text-blue-300 transition-colors">
+            Log in
+          </Link>
+        </p>
+
+        {/* Author */}
+        <p
+          className="mt-4 text-xs tracking-widest uppercase text-gray-600 opacity-0"
+          style={{ animation: "fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 2.8s forwards" }}
+        >
+          Built by{"       "}
+          <span className="text-gray-400 text-4xl">Sujal Patel</span>
+        </p>
       </main>
+
+      {/* Keyframe animations */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(24px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.5) rotate(-10deg);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+          }
+        }
+        @keyframes lineExpand {
+          from {
+            width: 0;
+          }
+          to {
+            width: 120px;
+          }
+        }
+        @keyframes gridReveal {
+          to {
+            opacity: 1;
+          }
+        }
+        @keyframes float {
+          0%, 100% {
+            opacity: 0.3;
+            transform: scale(1) translateY(0);
+          }
+          50% {
+            opacity: 0.6;
+            transform: scale(1.08) translateY(-20px);
+          }
+        }
+        @keyframes bgShift {
+          from {
+            background: radial-gradient(ellipse at 30% 50%, rgba(59,130,246,0.04) 0%, transparent 60%),
+                         radial-gradient(ellipse at 70% 50%, rgba(139,92,246,0.04) 0%, transparent 60%),
+                         #030712;
+          }
+          to {
+            background: radial-gradient(ellipse at 60% 40%, rgba(59,130,246,0.06) 0%, transparent 60%),
+                         radial-gradient(ellipse at 40% 60%, rgba(139,92,246,0.06) 0%, transparent 60%),
+                         #030712;
+          }
+        }
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+      `}</style>
     </div>
   );
 }
