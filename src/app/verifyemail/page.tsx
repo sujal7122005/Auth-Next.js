@@ -3,6 +3,8 @@
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 
 export default function VerifyEmailPage() {
@@ -10,14 +12,18 @@ export default function VerifyEmailPage() {
     const [token, setToken] = useState("");
     const [verified, setVerified] = useState(false);
     const [error, setError] = useState(false);
+    const router = useRouter();
 
     const verifyUserEmail = async () => {
         try {
             await axios.post('/api/users/userverification', {token})
             setVerified(true);
+            toast.success("Email verified successfully!", {duration: 3000});
+            router.push('/login');
+            
         } catch (error:any) {
             setError(true);
-            console.log(error.response.data);
+            toast.error("Error verifying email", {duration: 3000});
             
         }
 
@@ -37,6 +43,8 @@ export default function VerifyEmailPage() {
 
     return(
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
+            <p>Check your MailBox A verification email has been sent to your email address.</p>
+            <h2>you can copy the link on browser to verify or you can click on <b>here link which is send on your mail</b> </h2>
 
             <h1 className="text-4xl">Verify Email</h1>
             <h2 className="p-2 bg-orange-500 text-black">{token ? `${token}` : "token not find"}</h2>

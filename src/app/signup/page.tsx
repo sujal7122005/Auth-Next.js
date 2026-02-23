@@ -26,7 +26,7 @@ function SignUpPage() {
       const response = await axios.post('/api/users/signup', user)
       toast.success("User created successfully", {duration: 3000})
       console.log(response.data)
-      router.push('/login')
+      router.push('/verifyemail')
     } catch (error) {
       toast.error("Error creating user", {duration: 3000})
     } finally {
